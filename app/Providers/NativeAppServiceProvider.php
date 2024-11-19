@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Native\Laravel\Facades\Window;
+use App\Events\AskForRefresh;
 use Native\Laravel\Contracts\ProvidesPhpIni;
+use Native\Laravel\Facades\MenuBar;
+use Native\Laravel\Menu\Menu;
 
 class NativeAppServiceProvider implements ProvidesPhpIni
 {
@@ -13,7 +15,18 @@ class NativeAppServiceProvider implements ProvidesPhpIni
      */
     public function boot(): void
     {
-        Window::open();
+        MenuBar::create()
+            ->withContextMenu(
+                Menu::new()
+                    ->label('Tailscale Notifier')
+                    ->separator()
+                    ->event(AskForRefresh::class, 'Refresh')
+                    ->separator()
+                    ->quit()
+            )
+            ->onlyShowContextMenu();
+
+        event(new AskForRefresh);
     }
 
     /**
