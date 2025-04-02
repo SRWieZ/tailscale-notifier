@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Events\AskForRefresh;
+use App\Events\OpenAtLoginToggle;
 use Native\Laravel\Contracts\ProvidesPhpIni;
+use Native\Laravel\Facades\App;
+use Native\Laravel\Facades\Menu;
 use Native\Laravel\Facades\MenuBar;
-use Native\Laravel\Menu\Menu;
 
 class NativeAppServiceProvider implements ProvidesPhpIni
 {
@@ -17,12 +19,14 @@ class NativeAppServiceProvider implements ProvidesPhpIni
     {
         MenuBar::create()
             ->withContextMenu(
-                Menu::new()
-                    ->label('Tailscale Notifier')
-                    ->separator()
-                    ->event(AskForRefresh::class, 'Refresh')
-                    ->separator()
-                    ->quit()
+                Menu::make(
+                    Menu::label('Refresh')->event(AskForRefresh::class)
+                    ->accelerator('Command+R'),
+                    Menu::checkbox('Open at login', App::openAtLogin())
+                        ->event(OpenAtLoginToggle::class),
+                    Menu::separator(),
+                    Menu::quit(),
+                )
             )
             ->onlyShowContextMenu();
 

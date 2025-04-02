@@ -11,7 +11,7 @@
         "php": "^8.2",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
-        "nativephp/electron": "^0.8.7"
+        "nativephp/electron": "dev-main"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -89,6 +89,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }
