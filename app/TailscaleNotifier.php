@@ -2,6 +2,11 @@
 
 namespace App;
 
+use App\Events\AskForRefresh;
+use App\Events\OpenAtLoginToggle;
+use Native\Laravel\Facades\App;
+use Native\Laravel\Facades\Menu;
+use Native\Laravel\Facades\MenuBar;
 use Native\Laravel\Facades\Notification;
 use Native\Laravel\Facades\Settings;
 
@@ -39,6 +44,8 @@ class TailscaleNotifier
     {
         $changes = self::checkForChanges();
 
+        self::updateContextMenu();
+
         foreach ($changes['added'] as $change) {
             Notification::title('Tailscale')
                 ->message("✅ {$change} is now online")
@@ -50,5 +57,22 @@ class TailscaleNotifier
                 ->message("⛔️ {$change} is now offline")
                 ->show();
         }
+    }
+
+    public static function updateContextMenu()
+    {
+        MenuBar::contextMenu(
+            Menu::make(
+                Menu::label('Refresh')->event(AskForRefresh::class)
+                    ->accelerator('Command+R'),
+                Menu::separator(),
+                Menu::label('Connected devices: ' . count(Settings::get('lastsOnline', []))),
+                Menu::separator(),
+                Menu::checkbox('Open at login', App::openAtLogin())
+                    ->event(OpenAtLoginToggle::class),
+                Menu::separator(),
+                Menu::quit(),
+            )
+        );
     }
 }
