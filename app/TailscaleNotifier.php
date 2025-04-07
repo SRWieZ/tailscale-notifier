@@ -67,12 +67,13 @@ class TailscaleNotifier
                     ->accelerator('Command+R'),
                 Menu::separator(),
                 Menu::label('Connected devices: '.count(Settings::get('lastsOnline', []))),
-                Menu::label('Version: '.config('nativephp.version')),
                 Menu::separator(),
                 Menu::checkbox('Open at login', App::openAtLogin())
                     ->event(OpenAtLoginToggle::class),
                 Menu::separator(),
-                Menu::quit(),
+                Menu::label('Version: '.App::version()),
+                Menu::about('About'),
+                Menu::quit()->accelerator('Command+Q'),
             )
         );
     }
