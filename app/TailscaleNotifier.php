@@ -66,7 +66,8 @@ class TailscaleNotifier
                 Menu::label('Refresh')->event(AskForRefresh::class)
                     ->accelerator('Command+R'),
                 Menu::separator(),
-                Menu::label('Connected devices: ' . count(Settings::get('lastsOnline', []))),
+                Menu::label('Connected devices: '.count(Settings::get('lastsOnline', []))),
+                Menu::label('Version: '.config('nativephp.version')),
                 Menu::separator(),
                 Menu::checkbox('Open at login', App::openAtLogin())
                     ->event(OpenAtLoginToggle::class),

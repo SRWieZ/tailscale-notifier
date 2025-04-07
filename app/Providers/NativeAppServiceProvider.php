@@ -9,7 +9,6 @@ use Native\Laravel\Contracts\ProvidesPhpIni;
 use Native\Laravel\Facades\App;
 use Native\Laravel\Facades\Menu;
 use Native\Laravel\Facades\MenuBar;
-use Native\Laravel\Facades\Settings;
 
 class NativeAppServiceProvider implements ProvidesPhpIni
 {
@@ -25,7 +24,7 @@ class NativeAppServiceProvider implements ProvidesPhpIni
             ->withContextMenu(
                 Menu::make(
                     Menu::label('Refresh')->event(AskForRefresh::class)
-                    ->accelerator('Command+R'),
+                        ->accelerator('Command+R'),
                     Menu::checkbox('Open at login', App::openAtLogin())
                         ->event(OpenAtLoginToggle::class),
                     Menu::separator(),
