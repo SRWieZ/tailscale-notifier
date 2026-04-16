@@ -32,6 +32,21 @@ return [
     'author' => env('NATIVEPHP_APP_AUTHOR'),
 
     /**
+     * The copyright notice for your application.
+     */
+    'copyright' => env('NATIVEPHP_APP_COPYRIGHT'),
+
+    /**
+     * The description of your application.
+     */
+    'description' => env('NATIVEPHP_APP_DESCRIPTION', 'An awesome app built with NativePHP'),
+
+    /**
+     * The Website of your application.
+     */
+    'website' => env('NATIVEPHP_APP_WEBSITE', 'https://nativephp.com'),
+
+    /**
      * The default service provider for your application. This provider
      * takes care of bootstrapping your application and configuring
      * any global hotkeys, menus, windows, etc.
@@ -45,13 +60,19 @@ return [
      */
     'cleanup_env_keys' => [
         'AWS_*',
+        'AZURE_*',
         'GITHUB_*',
         'DO_SPACES_*',
         '*_SECRET',
+        'ZEPHPYR_*',
         'NATIVEPHP_UPDATER_PATH',
         'NATIVEPHP_APPLE_ID',
         'NATIVEPHP_APPLE_ID_PASS',
         'NATIVEPHP_APPLE_TEAM_ID',
+        'NATIVEPHP_AZURE_PUBLISHER_NAME',
+        'NATIVEPHP_AZURE_ENDPOINT',
+        'NATIVEPHP_AZURE_CERTIFICATE_PROFILE_NAME',
+        'NATIVEPHP_AZURE_CODE_SIGNING_ACCOUNT_NAME',
     ],
 
     /**
@@ -60,9 +81,11 @@ return [
      * You may use glob / wildcard patterns here.
      */
     'cleanup_exclude_files' => [
+        'build',
+        'temp',
         'content',
-        'storage/app/framework/{sessions,testing,cache}',
-        'storage/logs/laravel.log',
+        'node_modules',
+        '*/tests',
     ],
 
     /**
@@ -114,4 +137,32 @@ return [
             ],
         ],
     ],
+
+    /**
+     * The queue workers that get auto-started on your application start.
+     */
+    'queue_workers' => [
+        'default' => [
+            'queues' => ['default'],
+            'memory_limit' => 128,
+            'timeout' => 60,
+            'sleep' => 3,
+        ],
+    ],
+
+    /**
+     * Define your own scripts to run before and after the build process.
+     */
+    'prebuild' => [
+        // 'npm run build',
+    ],
+
+    'postbuild' => [
+        // 'rm -rf public/build',
+    ],
+
+    /**
+     * Custom PHP binary path.
+     */
+    'binary_path' => env('NATIVEPHP_PHP_BINARY_PATH', null),
 ];
