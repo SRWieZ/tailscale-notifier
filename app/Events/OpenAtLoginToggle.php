@@ -5,7 +5,7 @@ namespace App\Events;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Native\Laravel\Facades\App;
+use Native\Desktop\Facades\App;
 
 class OpenAtLoginToggle
 {

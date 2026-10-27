@@ -5,10 +5,10 @@ namespace App\Providers;
 use App\Events\AskForRefresh;
 use App\Events\OpenAtLoginToggle;
 use App\TailscaleNotifier;
-use Native\Laravel\Contracts\ProvidesPhpIni;
-use Native\Laravel\Facades\App;
-use Native\Laravel\Facades\Menu;
-use Native\Laravel\Facades\MenuBar;
+use Native\Desktop\Contracts\ProvidesPhpIni;
+use Native\Desktop\Facades\App;
+use Native\Desktop\Facades\Menu;
+use Native\Desktop\Facades\MenuBar;
 
 class NativeAppServiceProvider implements ProvidesPhpIni
 {
