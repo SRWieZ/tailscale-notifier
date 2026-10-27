@@ -4,11 +4,11 @@ namespace App;
 
 use App\Events\AskForRefresh;
 use App\Events\OpenAtLoginToggle;
-use Native\Laravel\Facades\App;
-use Native\Laravel\Facades\Menu;
-use Native\Laravel\Facades\MenuBar;
-use Native\Laravel\Facades\Notification;
-use Native\Laravel\Facades\Settings;
+use Native\Desktop\Facades\App;
+use Native\Desktop\Facades\Menu;
+use Native\Desktop\Facades\MenuBar;
+use Native\Desktop\Facades\Notification;
+use Native\Desktop\Facades\Settings;
 
 class TailscaleNotifier
 {
